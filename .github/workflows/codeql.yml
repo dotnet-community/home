@@ -2,7 +2,7 @@ name: CodeQL workflow
 
 on:
   push:
-    branches: [ main, live ]
+    branches: [ main ]
   pull_request:
     branches: [ main ]
   schedule:
