@@ -27,4 +27,4 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build --project src/DotNet.Community.Home/DotNet.Community.Home.csproj --configuration Release --no-restore
