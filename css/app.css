@@ -8,6 +8,14 @@ h1:focus {
     outline: none;
 }
 
+.selectable:not(.unselectable) {
+    cursor: pointer;
+}
+
+input:enabled {
+    cursor: pointer;
+}
+
 a, .btn-link {
     color: #0071c1;
 }
