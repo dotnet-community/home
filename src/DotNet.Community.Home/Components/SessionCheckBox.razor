@@ -1,0 +1,19 @@
+@inject IStorageService SessionStorage
+
+<label class="pl-0" for="@TaskId">
+    <input type="checkbox" class="form-check-input" id="@TaskId" @bind="@IsCompleted" />
+    @(new MarkupString(Item.Content))
+</label>
+
+@code {
+    [Parameter, EditorRequired]
+    public TaskItem Item { get; set; } = null!;
+
+    string TaskId => $"task:{Item.GetHashCode()}";
+
+    bool IsCompleted
+    {
+        get => SessionStorage.GetItem<bool>(TaskId);
+        set => SessionStorage.SetItem(TaskId, value);
+    }
+}
