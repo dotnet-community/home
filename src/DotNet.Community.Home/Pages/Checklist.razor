@@ -3,16 +3,15 @@
 <PageTitle>.NET Community: Checklist</PageTitle>
 
 <div class="content fs-5">
-    <h1>📋 Come prepared</h1>
+    <h1>📋 Streaming Checklist</h1>
     <p>
-        Before you "go live", consider the following checklist:
+        Regardless of whether you're streaming live, or recording — this checklist can help to ensure you'll have the best possible streaming experience. Before you "go live" or "press record", consider the following:
     </p>
     <ul class="list no-bullets p-0 pt-1">
         @foreach (var task in _tasks)
         {
-            var item = new TaskItem(task);
             <li>
-                <SessionCheckBox Item=@item />
+                <SessionCheckBox Item=@(new TaskItem(task)) />
             </li>
         }
     </ul>
