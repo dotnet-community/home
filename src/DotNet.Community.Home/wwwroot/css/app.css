@@ -8,12 +8,12 @@ h1:focus {
     outline: none;
 }
 
-input:enabled, label > input:enabled {
+.selectable:not(.unselectable) {
     cursor: pointer;
 }
 
-input:not(:enabled), label > input:not(:enabled) {
-    cursor: not-allowed;
+input:enabled {
+    cursor: pointer;
 }
 
 a, .btn-link {
