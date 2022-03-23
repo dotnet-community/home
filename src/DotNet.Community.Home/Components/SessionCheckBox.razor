@@ -2,7 +2,7 @@
 
 <label class="ps-2 selectable" for="@TaskId">
     <input type="checkbox" class="form-check-input" id="@TaskId" @bind="@IsCompleted" />
-    @(new MarkupString(Item.Content))
+    <span class="ps-3">@(new MarkupString(Item.Content))</span>
 </label>
 
 @code {
