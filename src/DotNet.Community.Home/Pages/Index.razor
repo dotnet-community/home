@@ -1,30 +1,33 @@
 ﻿@page "/"
 @page "/home"
 @implements IDisposable
+@inject ISessionStorageService SessionStorage
 
 <PageTitle>.NET Community: Home</PageTitle>
 
 <div class="content fs-5">
     <h1>Hi friends!</h1>
     <p>
-        Welcome to the .NET Community page. The site contains a Streaming Checklist to help prepare for a
-        live or pre-recorded <a href="http://dot.net/live" target="_blank">.NET TV</a> show. We also publish
-        a Code of Conduct and shared set of Community Guidelines.
+        Welcome to the .NET Community page. The site contains a <a href="checklist">Streaming Checklist</a> to help prepare for a
+        live or pre-recorded <a href="http://dot.net/live" target="_blank">.NET TV</a> shows. We also publish
+        a <a href="codeofconduct">Code of Conduct</a> as a shared set of Community Guidelines.
     </p>
     <p class="mx-auto p-4 text-center">
         <div id="carousel" class="carousel slide carousel-fade">
             <div class="carousel-inner">
                 @foreach (var (index, image) in _images.Select((image, index) => (index, image)))
                 {
-                    static IEnumerable<string> GetCssClasses(int index, int activeIndex)
+                    static IEnumerable<string> GetCssClasses(
+                        int index, int activeIndex)
                     {
                         yield return "carousel-item";
                         if (index == activeIndex) yield return "active";
                     }
-
                     var cssClasses = GetCssClasses(index, _imageIndex);
+
                     <div class=@string.Join(" ", cssClasses)>
-                        <img src=@($"community-{image.Id}.svg") class="img-fluid" alt=@image.Alt>
+                        <img src=@($"community-{image.Id}.svg") class="img-fluid"
+                            loading="eager" alt=@image.Alt>
                     </div>
                 }
             </div>
@@ -33,6 +36,9 @@
 </div>
 
 @code {
+    const string ImageIndexKey = "active-image-index";
+
+    int _imageIndex = 0;
     HashSet<ImageAltPair> _images = new()
     {
         new(1, "Remote conference experience."),
@@ -41,18 +47,22 @@
         new(4, "Camera crew."),
         new(5, "Juggling all the things."),
     };
+    PeriodicTimer _nextIndexTimer = new(TimeSpan.FromSeconds(5));
 
-    int _imageIndex = 0;
-
-    PeriodicTimer _nextIndexTimer = new(TimeSpan.FromSeconds(7.5));
-
-    protected override void OnInitialized() => _ = IncrementImageIndexAsync();
+    protected override void OnInitialized()
+    {
+        _imageIndex = SessionStorage.GetItem<int>(ImageIndexKey);
+        _ = IncrementImageIndexAsync();
+    }
 
     async Task IncrementImageIndexAsync()
     {
         try
         {
-            _imageIndex = (_imageIndex - 1 + _images.Count) % _images.Count;
+            _imageIndex++;
+            if (_imageIndex == _images.Count) _imageIndex = 0;
+
+            SessionStorage.SetItem(ImageIndexKey, _imageIndex);
         }
         finally
         {
