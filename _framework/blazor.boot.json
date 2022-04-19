@@ -7,9 +7,9 @@
   "linkerEnabled": true,
   "resources": {
     "assembly": {
-      "Blazor.Serialization.dll": "sha256-hbjkOSBO2Kvg+cUWV5iGALpybOFFcOk7QSaszGel15w=",
-      "Blazor.SessionStorage.WebAssembly.dll": "sha256-1LyFrQLrAKHt1bOYF4bgMRt0Ag+TR9hciQY\/aM5JAio=",
-      "DotNet.Community.Home.dll": "sha256-ywyzx1BnQglJFiKDaSpfDyrw0BKK3Zcv1bUtNVDGlDc=",
+      "Blazor.Serialization.dll": "sha256-jbRAeTqnZZPmatgfDGWv4WdTgkY3IWB6d4h5Ahxtr8s=",
+      "Blazor.SessionStorage.WebAssembly.dll": "sha256-26rJxvmjBj6OUwE8J5j78bBy8+KQP3d4MuCjZi8JV0E=",
+      "DotNet.Community.Home.dll": "sha256-56I78Dmonc7QE9M28YRfrIEFR+uDC49IrizWds5Lpzw=",
       "Microsoft.AspNetCore.Components.dll": "sha256-ME6njYSGH5w7dmCSr66qUX9gxO91otrkfUO3UgSmoeM=",
       "Microsoft.AspNetCore.Components.Web.dll": "sha256-J56CIqNtJKqXm6dWMAhvRI23W5p7RnErlWEDZVcwjV0=",
       "Microsoft.AspNetCore.Components.WebAssembly.dll": "sha256-Izlw\/SnIKXEmOa2P51s8rKqkVBfJ+MDvJMUpyP5lHkk=",
