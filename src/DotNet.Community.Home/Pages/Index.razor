@@ -1,10 +1,71 @@
 ﻿@page "/"
 @page "/home"
+@implements IDisposable
 
 <PageTitle>.NET Community: Home</PageTitle>
 
 <div class="content fs-5">
     <h1>Hi friends!</h1>
+    <p>
+        Welcome to the .NET Community page. The site contains a Streaming Checklist to help prepare for a
+        live or pre-recorded <a href="http://dot.net/live" target="_blank">.NET TV</a> show. We also publish
+        a Code of Conduct and shared set of Community Guidelines.
+    </p>
+    <p class="mx-auto p-4 text-center">
+        <div id="carousel" class="carousel slide carousel-fade">
+            <div class="carousel-inner">
+                @foreach (var (index, image) in _images.Select((image, index) => (index, image)))
+                {
+                    static IEnumerable<string> GetCssClasses(int index, int activeIndex)
+                    {
+                        yield return "carousel-item";
+                        if (index == activeIndex) yield return "active";
+                    }
 
-    Welcome to the .NET Community page.
+                    var cssClasses = GetCssClasses(index, _imageIndex);
+                    <div class=@string.Join(" ", cssClasses)>
+                        <img src=@($"community-{image.Id}.svg") class="img-fluid" alt=@image.Alt>
+                    </div>
+                }
+            </div>
+        </div>
+    </p>
 </div>
+
+@code {
+    HashSet<ImageAltPair> _images = new()
+    {
+        new(1, "Remote conference experience."),
+        new(2, "Smile community friends."),
+        new(3, "Drone flying fun."),
+        new(4, "Camera crew."),
+        new(5, "Juggling all the things."),
+    };
+
+    int _imageIndex = 0;
+
+    PeriodicTimer _nextIndexTimer = new(TimeSpan.FromSeconds(7.5));
+
+    protected override void OnInitialized() => _ = IncrementImageIndexAsync();
+
+    async Task IncrementImageIndexAsync()
+    {
+        try
+        {
+            _imageIndex = (_imageIndex - 1 + _images.Count) % _images.Count;
+        }
+        finally
+        {
+            await InvokeAsync(StateHasChanged);
+        }
+
+        if (await _nextIndexTimer.WaitForNextTickAsync())
+        {
+            await IncrementImageIndexAsync();
+        }
+    }
+
+    public void Dispose() => _nextIndexTimer.Dispose();
+
+    readonly record struct ImageAltPair(int Id, string Alt);
+}
