@@ -12,9 +12,9 @@
         <MudSwitch @bind-Checked="@IsDarkTheme" Color="Color.Primary" Class="ma-4" T="bool" Label="Theme Toggle"/>
         <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/dotnet-community/home" Target="_blank" />
     </MudAppBar>
-    <MudDrawer @bind-Open="_drawerOpen" Elevation="1">
+    <MudDrawer @bind-Open="_drawerOpen" Elevation="5" Color=Color.Dark>
         <MudDrawerHeader>
-            <MudText Typo="Typo.h6">.NET Community</MudText>
+            <MudText Typo="Typo.h5" Color=Color.Surface>.NET Community</MudText>
         </MudDrawerHeader>
         <NavMenu />
     </MudDrawer>
