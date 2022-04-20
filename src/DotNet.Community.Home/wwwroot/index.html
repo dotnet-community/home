@@ -14,10 +14,15 @@
 
 <body>
     <div id="app">
-        <div class="d-flex vh-100 justify-center align-center">
+        <div class="d-flex justify-center align-center" style="height: 100vh; font-size: 3rem;">
             <div class="d-flex mt-5 justify-center align-center">
                 <strong class="pa-5">🤖 Loading...</strong>
-                <div class="spinner-grow ms-auto" role="status" aria-hidden="true"></div>
+                <div class="mud-progress-circular mud-info-text mud-progress-medium mud-progress-indeterminate" 
+                     role="progressbar" aria-valuenow="0">
+                    <svg class="mud-progress-circular-svg" viewBox="22 22 44 44">
+                        <circle class="mud-progress-circular-circle mud-progress-indeterminate" cx="44" cy="44" r="20" fill="none" stroke-width="3"></circle>
+                    </svg>
+                </div>
             </div>
         </div>
     </div>
