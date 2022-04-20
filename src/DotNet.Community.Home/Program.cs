@@ -3,6 +3,8 @@ builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddSessionStorageServices();
+builder.Services.AddLocalStorageServices();
+
 builder.Services.AddScoped(
     sp => new HttpClient
     {

@@ -1,6 +1,7 @@
 ﻿@inherits LayoutComponentBase
+@inject ILocalStorageService LocalStorage
 
-<MudThemeProvider />
+<MudThemeProvider @bind-IsDarkMode="@IsDarkTheme" Theme="_theme" />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
@@ -8,6 +9,7 @@
     <MudAppBar Elevation="0">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
         <MudSpacer />
+        <MudSwitch @bind-Checked="@IsDarkTheme" Color="Color.Primary" Class="ma-4" T="bool" Label="Theme Toggle"/>
         <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/dotnet-community/home" Target="_blank" />
     </MudAppBar>
     <MudDrawer @bind-Open="_drawerOpen" Elevation="1">
@@ -24,10 +26,16 @@
 </MudLayout>
 
 @code {
+    const string PrefersDarkThemeKey = "prefers-dark-scheme";
+
+    MudTheme _theme = new();
     bool _drawerOpen = true;
 
-    void DrawerToggle()
+    bool IsDarkTheme
     {
-        _drawerOpen = !_drawerOpen;
+        get => LocalStorage.GetItem<bool>(PrefersDarkThemeKey);
+        set => LocalStorage.SetItem<bool>(PrefersDarkThemeKey, value);
     }
+
+    void DrawerToggle() => _drawerOpen = !_drawerOpen;
 }
