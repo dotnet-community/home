@@ -7,9 +7,10 @@
   "linkerEnabled": true,
   "resources": {
     "assembly": {
+      "Blazor.LocalStorage.WebAssembly.dll": "sha256-3epPmAm3M2tASWkEjsMSMSywVb1jAV4JEyumAo6ANso=",
       "Blazor.Serialization.dll": "sha256-jbRAeTqnZZPmatgfDGWv4WdTgkY3IWB6d4h5Ahxtr8s=",
       "Blazor.SessionStorage.WebAssembly.dll": "sha256-26rJxvmjBj6OUwE8J5j78bBy8+KQP3d4MuCjZi8JV0E=",
-      "DotNet.Community.Home.dll": "sha256-9fa2EB7gwS2JZUcQAtDDwO69wpyBSsTefnShhHA1hoU=",
+      "DotNet.Community.Home.dll": "sha256-10k2nLnebAo8EPLgz9SreJFHY3eAjkUgVlJlA3f7cNA=",
       "Microsoft.AspNetCore.Components.dll": "sha256-Kvs9\/xgpoDtSmhMcZ11n6UkNB06WFGgu1DYxFgXJS10=",
       "Microsoft.AspNetCore.Components.Forms.dll": "sha256-KdneSdSeGbAvAFUmcD2ccUlXr8gH4rj8HIQ3eLZcW5s=",
       "Microsoft.AspNetCore.Components.Web.dll": "sha256-MKhQqRnVTtMsh7duAvTSSm6+AeVHmPseOkjNTDPZjpo=",
