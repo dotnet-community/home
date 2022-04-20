@@ -2,20 +2,18 @@
 
 <PageTitle>.NET Community: Checklist</PageTitle>
 
-<div class="content fs-5">
-    <h1>📋 Streaming Checklist</h1>
-    <p>
-        Regardless of whether you're streaming live, or recording — this checklist can help to ensure you'll have the best possible streaming experience. Before you "go live" or "press record", consider the following:
-    </p>
-    <ul class="list no-bullets p-0 pt-1">
-        @foreach (var task in _tasks)
-        {
-            <li>
-                <SessionCheckBox Item=@(new TaskItem(task)) />
-            </li>
-        }
-    </ul>
-</div>
+<MudText Typo=Typo.h4>📋 Streaming Checklist</MudText>
+<MudText Typo=Typo.body1>
+    Regardless of whether you're streaming live, or recording — this checklist can help to ensure you'll have the best possible streaming experience. Before you "go live" or "press record", consider the following:
+</MudText>
+<MudElement HtmlTag="ul" Class="list no-bullets">
+    @foreach (var task in _tasks)
+    {
+        <MudElement HtmlTag="li">
+            <SessionCheckBox Item=@(new TaskItem(task)) />
+        </MudElement>
+    }
+</MudElement>
 
 @code {
     readonly string[] _tasks = new[]
@@ -24,13 +22,13 @@
         "🎧 Wear headphones to avoid echo and feedback",
         "📹 Use a reliable webcam",
         "🔦 Ensure you have good lighting",
-        "💻 <b>Reboot</b> your machine",
-        "🔕 Silence (<i>or</i> temporarily disable notifications)",
+        "💻 Reboot your machine",
+        "🔕 Silence (or temporarily disable notifications)",
         "⛔ Set status as \"Do not disturb\"",
         "🕥 Arrive at least 15 minutes early",
-        "🔗 Follow the <a href='https://streamyard.com/resources/docs/guest-instructions/' target='_blank'>Guest Instructions</a> from Stream<b>Yard</b>.",
+        "🔗 Follow the Guest Instructions from Stream: https://streamyard.com/resources/docs/guest-instructions",
         "💪🏽 Strong internet connection, wired connection if possible",
         "🕵️‍ Enable private browsing (Incognito/InPrivate mode) in your web browser",
-        "📃 You've read the <a href='codeofconduct' target='_blank'>Code of Conduct</a>.",
+        "📃 You've read the Code of Conduct.",
     };
 }

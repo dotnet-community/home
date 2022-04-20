@@ -1,44 +1,27 @@
 ﻿@page "/"
 @page "/home"
-@implements IDisposable
-@inject ISessionStorageService SessionStorage
 
 <PageTitle>.NET Community: Home</PageTitle>
 
-<div class="content fs-5">
-    <h1>Hi friends!</h1>
-    <p>
-        Welcome to the .NET Community page. The site contains a <a href="checklist">Streaming Checklist</a> to help prepare for a
-        live or pre-recorded <a href="http://dot.net/live" target="_blank">.NET TV</a> shows. We also publish
-        a <a href="codeofconduct">Code of Conduct</a> as a shared set of Community Guidelines.
-    </p>
-    <p class="mx-auto p-4 text-center">
-        <div id="carousel" class="carousel slide carousel-fade">
-            <div class="carousel-inner">
-                @foreach (var (index, image) in _images.Select((image, index) => (index, image)))
-                {
-                    static IEnumerable<string> GetCssClasses(
-                        int index, int activeIndex)
-                    {
-                        yield return "carousel-item";
-                        if (index == activeIndex) yield return "active";
-                    }
-                    var cssClasses = GetCssClasses(index, _imageIndex);
+<MudText Typo=Typo.h2>Hi friends!</MudText>
+<MudText Typo=Typo.body1>
+    Welcome to the .NET Community page. The site contains a <a href="checklist">Streaming Checklist</a> to help prepare for a
+    live or pre-recorded <a href="http://dot.net/live" target="_blank">.NET TV</a> shows. We also publish
+    a <a href="codeofconduct">Code of Conduct</a> as a shared set of Community Guidelines.
+</MudText>
 
-                    <div class=@string.Join(" ", cssClasses)>
-                        <img src=@($"community-{image.Id}.svg") class="img-fluid"
-                            loading="eager" alt=@image.Alt>
-                    </div>
-                }
-            </div>
+<MudCarousel Class="mud-width-full" Style="height: 70vh;"
+    AutoCycle="true" TData="ImageAltPair" Context="image"
+    ItemsSource=@_images AutoCycleTime=@TimeSpan.FromSeconds(8)>
+    <ItemTemplate>
+        <div class="d-flex flex-grow-1 pa-4">
+            <MudImage Fluid="true" Src=@($"community-{image.Id}.svg") 
+                Alt=@image.Alt Class="rounded-lg mx-auto my-auto"/>
         </div>
-    </p>
-</div>
+    </ItemTemplate>
+</MudCarousel>
 
 @code {
-    const string ImageIndexKey = "active-image-index";
-
-    int _imageIndex = 0;
     HashSet<ImageAltPair> _images = new()
     {
         new(1, "Remote conference experience."),
@@ -47,35 +30,6 @@
         new(4, "Camera crew."),
         new(5, "Juggling all the things."),
     };
-    PeriodicTimer _nextIndexTimer = new(TimeSpan.FromSeconds(5));
-
-    protected override void OnInitialized()
-    {
-        _imageIndex = SessionStorage.GetItem<int>(ImageIndexKey);
-        _ = IncrementImageIndexAsync();
-    }
-
-    async Task IncrementImageIndexAsync()
-    {
-        try
-        {
-            _imageIndex++;
-            if (_imageIndex == _images.Count) _imageIndex = 0;
-
-            SessionStorage.SetItem(ImageIndexKey, _imageIndex);
-        }
-        finally
-        {
-            await InvokeAsync(StateHasChanged);
-        }
-
-        if (await _nextIndexTimer.WaitForNextTickAsync())
-        {
-            await IncrementImageIndexAsync();
-        }
-    }
-
-    public void Dispose() => _nextIndexTimer.Dispose();
 
     readonly record struct ImageAltPair(int Id, string Alt);
 }

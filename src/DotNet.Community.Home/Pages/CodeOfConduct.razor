@@ -1,34 +1,32 @@
 ﻿@page "/codeofconduct"
 @inject HttpClient Http
 
-<PageTitle>.NET Community: Code of Conduct</PageTitle>
+<PageTitle>📋 .NET Community: Code of Conduct</PageTitle>
 
-<div class="content fs-5">
-    <h1 class="p-2">ℹ️ Code of Conduct</h1>
-    <h4>.NET foundation</h4>
-    <p class="p-2">
-        As a guest (or host) of any of the .NET streams (either live or pre-recorded), your participation is considered a
-        content contribution. We strive to foster an open and inclusive environment for all. To that end, we adhere to
-        the <i>.NET foundation's Contributor Covenant Code of Conduct</i>.
-        <br />
-        <a href="https://dotnetfoundation.org/about/code-of-conduct" target="_blank">
-            <img src="dotnet-foundation-logo.svg" loading="eager" alt=".NET foundation" />
-        </a>
-    </p>
-    <p class="p-2">
-        In addition to adhering to the .NET foundation's Contributor Covenant Code of Conduct, we also 
-        follow the community guidelines of the platforms where we stream.
-    </p>
-    <h4 class="p-2">Twitch.TV</h4>
-    <p class="p-2">
-        <button class="btn btn-lg btn-link">
-            <img src="twitch-logo.png" style="width:50px;" class="pe-2" /> Community Guidelines <span class="ps-2 fs-6 oi oi-external-link"></span>
-        </button>
-    </p>
-    <h4 class="p-2">YouTube</h4>
-    <p class="p-2">
-        <button class="btn btn-lg btn-link">
-            <img src="youtube-logo.png" style="width:60px;" class="pe-2" /> Community Guidelines <span class="ps-2 fs-6 oi oi-external-link"></span>
-        </button>
-    </p>
-</div>
+<MudText Typo=Typo.h4 Class="pb-4">.NET foundation: Code of Conduct</MudText>
+<MudText Typo=Typo.body1>
+    As a guest (or host) of any of the .NET streams (either live or pre-recorded), your participation is considered a
+    content contribution. We strive to foster an open and inclusive environment for all. To that end, we adhere to
+    the <i>.NET foundation's Contributor Covenant Code of Conduct</i>.
+    <MudSpacer />
+    <MudLink Href="https://dotnetfoundation.org/about/code-of-conduct" Target="_blank">
+        <MudImage Src="dotnet-foundation-logo.svg" Alt=".NET foundation" />
+    </MudLink>
+</MudText>
+<MudDivider Class="my-4" />
+<MudText Typo=Typo.body1 Class="pb-4">
+    In addition to adhering to the .NET foundation's Contributor Covenant Code of Conduct, we also 
+    follow the community guidelines of the platforms where we stream.
+</MudText>
+
+<MudText Typo=Typo.h5 Class="pb-4">Twitch.TV: Community Guidelines</MudText>
+<MudFab StartIcon=@Icons.Filled.Link Size=Size.Large
+    IconSize=Size.Large IconColor=Color.Primary Target="_blank"
+    Href="https://www.youtube.com/howyoutubeworks/policies/community-guidelines" />
+
+<MudDivider Class="my-4" />
+
+<MudText Typo=Typo.h5 Class="pb-4">YouTube: Community Guidelines</MudText>
+<MudFab StartIcon=@Icons.Custom.Brands.YouTube Size=Size.Large 
+    IconSize=Size.Large Color=Color.Error Target="_blank"
+    Href="https://www.twitch.tv/creatorcamp/learn-the-basics/community-guidelines" />

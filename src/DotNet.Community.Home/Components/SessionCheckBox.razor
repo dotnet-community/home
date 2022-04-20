@@ -1,16 +1,15 @@
 @inject ISessionStorageService SessionStorage
 
-<label class="ps-2 selectable" for="@TaskId">
-    <input type="checkbox" class="form-check-input" id="@TaskId" @bind="@IsCompleted" />
-    <span class="ps-3">@(new MarkupString(Item.Content))</span>
-</label>
+<MudCheckBox @bind-Checked="@IsCompleted" 
+    id=@TaskId
+    Label=@(new MarkupString(Item.Content).Value) />
 
 @code {
     [Parameter, EditorRequired]
     public TaskItem Item { get; set; } = null!;
 
     string TaskId => $"task:{Item.GetHashCode()}";
-
+    
     bool IsCompleted
     {
         get => SessionStorage.GetItem<bool>(TaskId);
