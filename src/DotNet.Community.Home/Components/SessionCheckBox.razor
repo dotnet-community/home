@@ -1,15 +1,15 @@
 @inject ISessionStorageService SessionStorage
 
-<MudCheckBox @bind-Checked="@IsCompleted" 
-    id=@TaskId
-    Label=@(new MarkupString(Item.Content).Value) />
+<MudCheckBox @bind-Checked="@IsCompleted"
+             id=@TaskId Color=Color.Primary Dense=true Size="Size.Large"
+             Label=@(new MarkupString(Item.Content).Value) />
 
 @code {
     [Parameter, EditorRequired]
     public TaskItem Item { get; set; } = null!;
 
     string TaskId => $"task:{Item.GetHashCode()}";
-    
+
     bool IsCompleted
     {
         get => SessionStorage.GetItem<bool>(TaskId);
