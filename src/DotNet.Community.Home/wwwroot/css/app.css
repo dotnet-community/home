@@ -57,3 +57,7 @@ input:enabled {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+.nav-text-lg {
+    font-size: 1rem;
+}
